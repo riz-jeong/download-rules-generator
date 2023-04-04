@@ -25,7 +25,7 @@ download_rule = {
     "mustNotContain": "",
     "previouslyMatchedEpisodes": [
     ],
-    "savePath": "%s/" %dir_path,
+    "savePath": "",
     "smartFilter": False,
     "torrentContentLayout": None,
     "useRegex": False
@@ -35,9 +35,9 @@ download_rule = {
 dir_dict = {}
 for dir_name in os.listdir(dir_path):
     if os.path.isdir(os.path.join(dir_path, dir_name)):
-        
+
         dir_dict[dir_name] = download_rule
-        dir_dict[dir_name]["savePath"] += dir_name
+        dir_dict[dir_name]["savePath"] = os.path.join(dir_path, dir_name)
 
 # JSON 파일로 저장
 with open('download_rules_%s.json' %set_dir, 'w') as json_file:
