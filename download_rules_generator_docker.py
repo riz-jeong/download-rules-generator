@@ -2,8 +2,12 @@ import os
 import json
 
 # 디렉토리 경로
+## my_path 문자열에 사용할 절대 경로를 설정
+## docker_path 문자열에 도커상에 마운트한 경로 설정
+my_path = "/"
+docker_path = "/"
 set_dir = input("input dir: ")
-dir_path = os.path.join(os.path.dirname(__file__), set_dir)
+dir_path = os.path.join(my_path, set_dir)
 
 # 디렉토리 안의 RSS 포스트
 rss_feeds = [
@@ -25,7 +29,7 @@ download_rule = {
     "mustNotContain": "",
     "previouslyMatchedEpisodes": [
     ],
-    "savePath": "%s/" %dir_path,
+    "savePath": os.path.join(docker_path, set_dir),
     "smartFilter": False,
     "torrentContentLayout": None,
     "useRegex": False
@@ -35,7 +39,6 @@ download_rule = {
 dir_dict = {}
 for dir_name in os.listdir(dir_path):
     if os.path.isdir(os.path.join(dir_path, dir_name)):
-        
         dir_dict[dir_name] = download_rule
         dir_dict[dir_name]["savePath"] += dir_name
 
