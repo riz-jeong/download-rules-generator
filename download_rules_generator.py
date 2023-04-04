@@ -1,13 +1,15 @@
 import os
 import json
 
+
+
 # 디렉토리 경로
 set_dir = input("input dir: ")
-dir_path = os.path.abspath('.') + "/" + set_dir
+dir_path = os.path.dirname(__file__) + "/" + set_dir
 
 # 디렉토리 안의 RSS 포스트
 rss_feeds = [
-    "https://subsplease.org/rss/?t&r=1080"
+    ""
     ]
 
 # qBittorrent 다운로드 규칙 
